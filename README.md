@@ -15,8 +15,13 @@
 ## New APIs
 
 * 新增`android.support.design.widget.BottomNavigationView`类(更新的主角)，实现了Material Design中的[bottom navigation](https://material.google.com/components/bottom-navigation.html)设计样式，就是我们常见的底部tab栏
+
+  ![设计标准](arts/size.png)
+
 * 新增`android.support.v13.view.inputmethod`包，其中的相关类实现了在API 13时引入的`android.view.inputmethod.InputConnection`特性
+
 * 新增`android.v7.widget.RecyclerView.DividerItemDecoration`类，提供RecyclerView分割线的一种基础实现，目前只支持`LinearLayoutManager`的横向和纵向布局
+
 * 将API 24中引入的自定义Notification布局的相关类加入到兼容包中，即`DecoratedCustomViewStyle`和`DecoratedMediaCustomViewStyle`
 
 ## 功能预览
@@ -74,26 +79,28 @@
 代码中就比较简单了：  
 ```java
 navigationView = (BottomNavigationView) findViewById(R.id.navigation);
-        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
+navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+     @Override
+     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+           Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+           return false;
+     }
+});
 ```
 
 而上方的应用列表则使用RecyclerView，并搭配了新的divider类：  
 ```java
 mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new AppInfoAdapter(this, getAppInfo(), R.layout.item_app_info);
-        mRecyclerView.setAdapter(mAdapter);
-        // New in recyclerview-25.0.0
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, mLayoutManager.getOrientation()));
+mLayoutManager = new LinearLayoutManager(this);
+mRecyclerView.setLayoutManager(mLayoutManager);
+mAdapter = new AppInfoAdapter(this, getAppInfo(), R.layout.item_app_info);
+mRecyclerView.setAdapter(mAdapter);
+// New in recyclerview-25.0.0
+mRecyclerView.addItemDecoration(new DividerItemDecoration(this, mLayoutManager.getOrientation()));
 ```
+
+调用`DividerItemDecoration`中的`setDrawable(@NonNull Drawable drawable)`方法是可以替换divider样式的。
 
 ## 结语
 
-介绍就到这里了，示例demo的代码在[这里(github)]()，欢迎大家下载体验。
+介绍就到这里了，示例demo的代码在[这里(github)](https://github.com/chenenyu/Support-25.0.0)，欢迎大家下载体验。
