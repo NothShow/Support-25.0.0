@@ -28,7 +28,7 @@
 
 ![Screenshot](arts/screenshot.png)
 
-作者第一时间尝试了其中的部分新API，交互效果真的很棒！下面大概说下使用方式：  
+作者第一时间尝试了其中的部分新API，交互效果真的很棒，建议运行demo查看细节！下面大概说下使用方式：  
 首先在布局中引入`BottomNavigationView`,  
 ```xml
 <android.support.design.widget.BottomNavigationView
@@ -64,7 +64,7 @@
 </menu>
 ```
 
-`itemTextColor`是指定tab下的文字颜色的，这里使用了selector，  
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
@@ -74,9 +74,8 @@
 </selector>
 ```
 
-`itemIconTint`是为tab里的icon着色，这里使用了跟文字相同的颜色效果。
+`itemIconTint`是为tab里的icon着色，这里使用了跟文字相同的颜色效果。代码中就比较简单了：  
 
-代码中就比较简单了：  
 ```java
 navigationView = (BottomNavigationView) findViewById(R.id.navigation);
 navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
